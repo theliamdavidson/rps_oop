@@ -5,12 +5,25 @@
 #define rps_H
 using namespace std;
 
-
-class Game
-{      
+class Game{      
     public:            
-        char mov[4] = {'R', 'S', 'P', 'R'};  
-        void move_check(int p1index, int p2index){
+        char move_array[4] = {'R', 'S', 'P', 'R'};  
+        int player_data(){
+            string move;
+            int entry = 1;
+            while(entry){
+                cout << "enter your move: (R, P, or S) \n";
+                cin >> move;
+                for(int index = 0; index < 3; index++){
+                    if(move_array[index] == toupper(move[0])){
+                        entry = 0;
+                        return index;
+                    }
+                }
+                cout << "incorrect input, please try again";         
+            }
+        }
+        void win_check(int p1index, int p2index){
             if(p1index == p2index){
                 cout << "There's a tie!"<< endl;
             }
@@ -30,28 +43,11 @@ class Game
         int game_run = 1;     
 };
 
-class Player: private Game
-{
-    private: 
-        string move;
+class Player: private Game{
     public:
-        int entry = 1;
-        int play_index = 0;
+        int move_index = 0;
         Player(){
-            while(entry){
-                cout << "enter your move: (R, P, or S) \n";
-                cin >> move;
-                for(int i = 0; i < 3; i++){
-                    if(mov[i] == toupper(move[0])){
-                        entry = 0;
-                        play_index = i;
-                    }
-                }
-                if(entry){
-                    cout << "incorrect input, please try again";
-                }              
-            }
+            move_index = player_data();
         }        
 };
-
 #endif
