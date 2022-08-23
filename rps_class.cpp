@@ -4,7 +4,7 @@ using namespace std;
 
 int main(){
     Game rps;
-    cout << "welcome to rps v2.0 \n";
+    cout << "welcome to rps v3.0, now featuring 100% more swag \n";
     while(rps.game_run){
         cout << "Player 1, ";
         Player p1;

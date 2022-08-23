@@ -4,27 +4,21 @@
 #ifndef rps_H
 #define rps_H
 using namespace std;
-class Rock
-{
-    char shorthand = 'R';
-    char wins = 'S';
-};
-class Paper
-{
-    char shorthand = 'P';
-    char wins = 'R';
-};
-class Scissors
-{
-    char shorthand = 'S';
-    char wins = 'P';
-};
+struct{
+    char wins;
+} Rock, Paper, Scissors;
+
 class Game
 {      
     public:        
-        Rock R;
-        Paper P;
-        Scissors S;
+        Game(){
+            Rock.wins = 'S';
+            Paper.wins = 'R';
+            Scissors.wins = 'P';
+        }
+        string move_check(char move){
+            
+        }
         void win_statement(int winner){
             char user_num;
             switch(winner){
@@ -55,11 +49,13 @@ class Player: private Game
     private: 
         string usr_input;
     public:
+        string played;
         char move;
         Player(){
             cout << "enter your move: (R, P, or S) \n";
             cin >> usr_input;
             move = toupper(usr_input[0]);
+            played = move_check(move);
         }        
 };
 
