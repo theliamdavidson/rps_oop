@@ -4,58 +4,53 @@
 #ifndef rps_H
 #define rps_H
 using namespace std;
-struct{
-    char wins;
-} Rock, Paper, Scissors;
+
 
 class Game
 {      
-    public:        
-        Game(){
-            Rock.wins = 'S';
-            Paper.wins = 'R';
-            Scissors.wins = 'P';
-        }
-        string move_check(char move){
-            
-        }
-        void win_statement(int winner){
-            char user_num;
-            switch(winner){
-                case 0:
-                    cout << "There's a tie!"<< endl;
-                    break;
-                case 1:
-                    cout << "Player 1 wins!" << endl;
-                    break;
-                case 2:
-                    cout << "Player 2 wins!" << endl;
-                    break;
-                default:
-                    cout << "fault; break";
-                    break;
+    public:            
+        char mov[4] = {'R', 'S', 'P', 'R'};  
+        void move_check(int p1index, int p2index){
+            if(p1index == p2index){
+                cout << "There's a tie!"<< endl;
             }
-            cout << "Play again? (y/n)";
-            cin >> user_num;
-            if(toupper(user_num) != 'Y'){
+            else if ((p1index + 1) == p2index){
+                cout << "Player 1 wins!" << endl;
+            }
+            else{
+                cout << "Player 2 wins!" << endl;
+            }   
+            cout << "Play again? (y/n) ";
+            char user_let;
+            cin >> user_let;
+            if(toupper(user_let) != 'Y'){
                 game_run = 0;
-            }
+            }         
         }
-        int game_run = 1;
+        int game_run = 1;     
 };
 
 class Player: private Game
 {
     private: 
-        string usr_input;
+        string move;
     public:
-        string played;
-        char move;
+        int entry = 1;
+        int play_index = 0;
         Player(){
-            cout << "enter your move: (R, P, or S) \n";
-            cin >> usr_input;
-            move = toupper(usr_input[0]);
-            played = move_check(move);
+            while(entry){
+                cout << "enter your move: (R, P, or S) \n";
+                cin >> move;
+                for(int i = 0; i < 3; i++){
+                    if(mov[i] == toupper(move[0])){
+                        entry = 0;
+                        play_index = i;
+                    }
+                }
+                if(entry){
+                    cout << "incorrect input, please try again";
+                }              
+            }
         }        
 };
 

@@ -10,6 +10,6 @@ int main(){
         Player p1;
         cout << "Player 2, ";
         Player p2;
-        rps.win_statement(0);//(toupper(p1.move), toupper(p2.move)));
+        rps.move_check(p1.play_index, p2.play_index);
     }
 }
