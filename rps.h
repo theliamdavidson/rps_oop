@@ -8,6 +8,7 @@ using namespace std;
 class Game{      
     public:            
         char move_array[4] = {'R', 'S', 'P', 'R'};  
+        int game_run = 1;   
         int player_data(){
             string move;
             int entry = 1;
@@ -16,7 +17,6 @@ class Game{
                 cin >> move;
                 for(int index = 0; index < 3; index++){
                     if(move_array[index] == toupper(move[0])){
-                        entry = 0;
                         return index;
                     }
                 }
@@ -39,8 +39,7 @@ class Game{
             if(toupper(user_let) != 'Y'){
                 game_run = 0;
             }         
-        }
-        int game_run = 1;     
+        }  
 };
 
 class Player: private Game{
